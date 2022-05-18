@@ -37,9 +37,10 @@ class MyHomePage extends ConsumerWidget {
               width: 200,
               child: Container(
                 decoration: BoxDecoration(
-                  // image: ,
+                  image: DecorationImage(
+                      image: AssetImage('assets/image/IMG_1.jpg')),
                   borderRadius: BorderRadius.circular(5),
-                  color: Colors.redAccent,
+                  // color: Colors.redAccent,
                 ),
                 margin: const EdgeInsets.only(left: 15, top: 15),
                 child: Text('Carousel Sample'),
