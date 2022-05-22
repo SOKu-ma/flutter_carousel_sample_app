@@ -1,16 +1,24 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+// カルーセル出力コンテンツ格納用プロバイダー
+final carouselContentsProvider = StateNotifierProvider<
+    CarouselContainerModelNotifier, List<CarouselContainerModel>>(
+  (ref) => CarouselContainerModelNotifier([]),
+);
+
 // カルーセルコンテナmodel
 class CarouselContainerModel {
   String url;
   String title;
   String subTitle;
+  String detailText;
   bool isFavorite;
 
   CarouselContainerModel(
     this.url,
     this.title,
     this.subTitle,
+    this.detailText,
     this.isFavorite,
   );
 }

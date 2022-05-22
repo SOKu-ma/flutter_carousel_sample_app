@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel_sample_app/views/home/home_view_model.dart';
+import 'package:flutter_carousel_sample_app/model/carousel_conatiner_model.dart';
 import 'package:flutter_carousel_sample_app/widget/image_container/image_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,7 +14,9 @@ class Home extends ConsumerWidget {
         ref.watch(carouselContentsProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Carousel App')),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -29,37 +31,27 @@ class Home extends ConsumerWidget {
               ),
               // カルーセルコンテナ
               SizedBox(
-                height: _size.height / 4.0,
+                height: _size.height / 3.0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
+                  itemCount: 3,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
                       margin: const EdgeInsets.only(left: 10),
                       child: Column(
                         children: [
                           Expanded(
-                            child: carouselContainer('assets/image/IMG_1.jpg',
-                                _size.height / 4.0, _size.width / 1.5),
+                            child: carouselContainer(
+                              index,
+                              'assets/image/IMG_1.jpg',
+                              _size.height / 5.0,
+                              _size.width / 1.5,
+                            ),
                           ),
                         ],
                       ),
                     );
                   },
-                ),
-              ),
-              // カルーセルのフッタ
-              Container(
-                margin: const EdgeInsets.only(left: 10, top: 20),
-                child: Text(
-                  'タイトル',
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 10, top: 10),
-                child: Text(
-                  'サブタイトル',
-                  style: TextStyle(fontSize: 18),
                 ),
               ),
             ],
