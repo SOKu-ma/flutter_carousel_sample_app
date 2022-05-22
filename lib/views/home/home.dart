@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_carousel_sample_app/views/home/home_view_model.dart';
-import 'package:flutter_carousel_sample_app/widget/image_container.dart';
+import 'package:flutter_carousel_sample_app/views/home/home_view_model.dart';
+import 'package:flutter_carousel_sample_app/widget/image_container/image_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Home extends ConsumerWidget {
@@ -9,9 +9,9 @@ class Home extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final Size _size = MediaQuery.of(context).size;
-    // final _carouselContentsProvider = ref.watch(carouselContentsProvider);
-    // final _carouselContentsProviderNotifier =
-    // ref.watch(carouselContentsProvider.notifier);
+    final _carouselContentsProvider = ref.watch(carouselContentsProvider);
+    final _carouselContentsProviderNotifier =
+        ref.watch(carouselContentsProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Carousel App')),
@@ -20,12 +20,14 @@ class Home extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 第1カルーセルのヘッダ
+              // ヘッダ
               Container(
-                margin: const EdgeInsets.only(left: 10, top: 20),
-                child: const Text('検索結果', style: TextStyle(fontSize: 16)),
+                margin: const EdgeInsets.only(left: 10, top: 20, bottom: 10),
+                child: const Text('検索結果',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               ),
-              // 第1領域
+              // カルーセルコンテナ
               SizedBox(
                 height: _size.height / 4.0,
                 child: ListView.builder(
@@ -36,8 +38,8 @@ class Home extends ConsumerWidget {
                       child: Column(
                         children: [
                           Expanded(
-                            child: imageContainer('assets/image/IMG_1.jpg',
-                                context, _size.height / 4.0),
+                            child: carouselContainer('assets/image/IMG_1.jpg',
+                                _size.height / 4.0, _size.width / 1.5),
                           ),
                         ],
                       ),
@@ -45,18 +47,21 @@ class Home extends ConsumerWidget {
                   },
                 ),
               ),
-              // 第1カルーセルのフッタ
+              // カルーセルのフッタ
               Container(
-                margin: const EdgeInsets.only(left: 10),
-                child: Column(
-                  children: const [
-                    Text('検索結果', style: TextStyle(fontSize: 16)),
-                    Text('検索結果', style: TextStyle(fontSize: 16)),
-                    Text('検索結果', style: TextStyle(fontSize: 16)),
-                  ],
+                margin: const EdgeInsets.only(left: 10, top: 20),
+                child: Text(
+                  'タイトル',
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
-              // 第2領域
+              Container(
+                margin: const EdgeInsets.only(left: 10, top: 10),
+                child: Text(
+                  'サブタイトル',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
             ],
           ),
         ),
