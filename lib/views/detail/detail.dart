@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_sample_app/model/carousel_conatiner_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Detail extends ConsumerWidget {
@@ -10,6 +11,10 @@ class Detail extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // カルーセルコンテンツmodelプロバイダ
+    final _carouselContentsProvider = ref.watch(carouselContentsProvider);
+    final _carouselContentsProviderNotifier =
+        ref.watch(carouselContentsProvider.notifier);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -41,21 +46,34 @@ class Detail extends ConsumerWidget {
             ),
             // タイトル
             Container(
-              margin: const EdgeInsets.only(left: 10, top: 20),
+              margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
               width: double.infinity,
               color: Colors.white,
               child: Text(
+                // _carouselContentsProvider[index].title,
                 title,
                 style: const TextStyle(fontSize: 20),
               ),
             ),
             // サブタイトル
             Container(
-              margin: const EdgeInsets.only(left: 10, top: 10),
+              margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
               width: double.infinity,
               color: Colors.white,
               child: Text(
-                title,
+                // _carouselContentsProvider[index].subTitle,
+                subTitle,
+                style: const TextStyle(fontSize: 18),
+              ),
+            ),
+            // 詳細テキスト
+            Container(
+              margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+              width: double.infinity,
+              color: Colors.white,
+              child: Text(
+                // _carouselContentsProvider[index].detailText,
+                'あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ',
                 style: const TextStyle(fontSize: 18),
               ),
             ),
