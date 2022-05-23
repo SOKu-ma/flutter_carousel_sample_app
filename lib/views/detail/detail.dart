@@ -3,18 +3,13 @@ import 'package:flutter_carousel_sample_app/model/carousel_conatiner_model.dart'
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Detail extends ConsumerWidget {
-  final String url;
-  final String title;
-  final String subTitle;
-  const Detail(this.url, this.title, this.subTitle, {Key? key})
-      : super(key: key);
+  final int index;
+  const Detail(this.index, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // カルーセルコンテンツmodelプロバイダ
     final _carouselContentsProvider = ref.watch(carouselContentsProvider);
-    final _carouselContentsProviderNotifier =
-        ref.watch(carouselContentsProvider.notifier);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -29,7 +24,7 @@ class Detail extends ConsumerWidget {
                     height: double.infinity / 3,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(url),
+                        image: AssetImage(_carouselContentsProvider[index].url),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -50,8 +45,8 @@ class Detail extends ConsumerWidget {
               width: double.infinity,
               color: Colors.white,
               child: Text(
-                // _carouselContentsProvider[index].title,
-                title,
+                _carouselContentsProvider[index].title,
+                // title,
                 style: const TextStyle(fontSize: 20),
               ),
             ),
@@ -61,8 +56,8 @@ class Detail extends ConsumerWidget {
               width: double.infinity,
               color: Colors.white,
               child: Text(
-                // _carouselContentsProvider[index].subTitle,
-                subTitle,
+                _carouselContentsProvider[index].subTitle,
+                // subTitle,
                 style: const TextStyle(fontSize: 18),
               ),
             ),
@@ -72,9 +67,8 @@ class Detail extends ConsumerWidget {
               width: double.infinity,
               color: Colors.white,
               child: Text(
-                // _carouselContentsProvider[index].detailText,
-                'あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ',
-                style: const TextStyle(fontSize: 18),
+                _carouselContentsProvider[index].detailText,
+                style: const TextStyle(fontSize: 16),
               ),
             ),
           ],
