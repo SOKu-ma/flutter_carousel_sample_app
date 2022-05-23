@@ -10,6 +10,9 @@ class Detail extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // カルーセルコンテンツmodelプロバイダ
     final _carouselContentsProvider = ref.watch(carouselContentsProvider);
+    final _carouselContentsProviderNotifier =
+        ref.watch(carouselContentsProvider.notifier);
+    final Size _size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -34,6 +37,29 @@ class Detail extends ConsumerWidget {
                     appBar: AppBar(
                       backgroundColor: Colors.transparent,
                       elevation: 0.0,
+                    ),
+                    body: GestureDetector(
+                      child: AnimatedContainer(
+                        duration: const Duration(seconds: 1),
+                        margin:
+                            EdgeInsets.only(left: _size.width - 50, top: 100),
+                        child: Icon(
+                          _carouselContentsProvider[index].isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: _carouselContentsProvider[index].isFavorite
+                              ? Colors.red
+                              : Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                      onTap: () {
+                        // お気に入りフラグのON/OFF
+                        _carouselContentsProviderNotifier.cheaked(
+                          !_carouselContentsProvider[index].isFavorite,
+                          index,
+                        );
+                      },
                     ),
                   ),
                 ],
