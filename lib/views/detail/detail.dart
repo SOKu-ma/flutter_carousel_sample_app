@@ -19,7 +19,7 @@ class Detail extends ConsumerWidget {
           children: [
             // サムネイル
             SizedBox(
-              height: 220,
+              height: 250,
               child: Stack(
                 children: [
                   Container(
@@ -42,7 +42,7 @@ class Detail extends ConsumerWidget {
                       child: AnimatedContainer(
                         duration: const Duration(seconds: 1),
                         margin:
-                            EdgeInsets.only(left: _size.width - 50, top: 100),
+                            EdgeInsets.only(left: _size.width - 50, top: 120),
                         child: Icon(
                           _carouselContentsProvider[index].isFavorite
                               ? Icons.favorite
